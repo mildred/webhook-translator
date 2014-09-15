@@ -6,6 +6,8 @@ var sexp    = require('sexp');
 var url     = require('url');
 var app = express();
 
+var ids = 0;
+
 var env = {
 
   "let": function(env, code, cb){
@@ -114,6 +116,7 @@ app.get('/', function(request, response) {
 })
 
 app.get('/*', function(request, response) {
+  var id   = ++ids;
   var code = new Buffer(request.path.substr(1), 'base64').toString();
   var e = extend({}, env);
   
@@ -125,7 +128,9 @@ app.get('/*', function(request, response) {
     }
   }
   
+  console.log(id + ": " + request.path.substr(1));
   e.log = function(item){
+    console.log(id + ": " + item);
     response.write("log: " + item + "\n");
   }
   
