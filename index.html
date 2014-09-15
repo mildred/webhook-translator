@@ -1,0 +1,25 @@
+<!DOCTYPE html5>
+<textarea rows=15 cols=120></textarea>
+<br />Webhook: <a href=""></a>
+
+<script type="text/javascript">
+
+var a        = document.querySelector("a");
+var textarea = document.querySelector("textarea");
+textarea.addEventListener('input', update);
+
+function update(){
+  var href = window.location.href
+  var i = href.indexOf('/', 7);
+  if(i != -1) href = href.substr(0, i);
+  var i = href.indexOf('#');
+  if(i != -1) href = href.substr(0, i);
+  var href = href + "/" + btoa(textarea.value.trim());
+  a.innerHTML = href;
+  a.setAttribute("href", href);
+}
+
+var code = atob(window.location.hash.substr(1));
+textarea.textContent = code;
+update();
+</script>
