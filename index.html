@@ -23,3 +23,39 @@ var code = atob(window.location.hash.substr(1));
 textarea.textContent = code;
 update();
 </script>
+
+<hr/>
+
+<h1>Available functions</h1>
+
+<h2>(let DEFINITIONS... CODE)</h2>
+
+<p>Define variables (DEFINITIONS) and run CODE with those definitions. Example:</p>
+
+<pre>(let
+  (function-name) (function ...)
+  variable1       "var1"
+  variable2       (cat "a" "bc")
+  (cat variable1 variable2))</pre>
+
+<p>Note that <code>(function ...)</code> doesn't exists yet</p>
+
+<h2>(json CODE [KEY...])</h2>
+
+<p>Parse JSON Content</p>
+
+<h2>(cat ...)</h2>
+
+<p>Concatenate strings</p>
+
+<h2>(urlencode STRING)</h2>
+
+<p>Encode STRING as URI component</p>
+
+<h2>(http get URI)</h2>
+
+<p>Perform HTTP request. HTTPS certificate is always considered valid. A future https command might have an option to specify a list of trusted certificates.</p>
+
+<h2>(req param PARAM)</h2>
+
+<p>Return the request parameter PARAM. Works with GET or POST parameters.</p>
